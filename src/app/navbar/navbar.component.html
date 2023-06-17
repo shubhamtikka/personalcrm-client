@@ -1,0 +1,104 @@
+<nav class="bg-gray-800">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <div class="flex-shrink-0">
+        <a [routerLink]="['/']" class="text-white font-bold text-xl">My Site</a>
+      </div>
+      <div class="hidden md:flex items-center justify-center">
+        <a
+          *ngIf="!isLoggedIn"
+          [routerLink]="['/']"
+          routerLinkActive="active"
+          class="text-gray-300 hover:text-white font-medium mx-3"
+          >Home</a
+        >
+        <a
+          *ngIf="isLoggedIn"
+          [routerLink]="['/home']"
+          routerLinkActive="active"
+          class="text-gray-300 hover:text-white font-medium mx-3"
+          >Home</a
+        >
+        <a
+          *ngIf="!isLoggedIn"
+          [routerLink]="['/login']"
+          routerLinkActive="active"
+          class="text-gray-300 hover:text-white font-medium mx-3"
+          >Login</a
+        >
+        <a
+          *ngIf="!isLoggedIn"
+          [routerLink]="['/register']"
+          routerLinkActive="active"
+          class="text-gray-300 hover:text-white font-medium mx-3"
+          >Register</a
+        >
+        <a
+          *ngIf="isLoggedIn"
+          (click)="logout()"
+          [routerLink]="['/']"
+          routerLinkActive="active"
+          class="text-gray-300 hover:text-white font-medium mx-3"
+          >Logout
+        </a>
+        <a
+          [routerLink]="['/about']"
+          routerLinkActive="active"
+          class="text-gray-300 hover:text-white font-medium mx-3"
+          >About</a
+        >
+      </div>
+      <div class="-mr-2 flex md:hidden">
+        <button
+          (click)="isMenuOpen = !isMenuOpen"
+          type="button"
+          class="bg-gray-900 inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:bg-gray-700 focus:text-white transition duration-150 ease-in-out"
+          aria-label="Toggle navigation"
+        >
+          <svg
+            class="h-6 w-6"
+            stroke="currentColor"
+            fill="none"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"
+            ></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div [ngClass]="{ block: isMenuOpen, hidden: !isMenuOpen }">
+    <div
+      class="px-2 pt-2 pb-3 sm:px-3 flex flex-col items-center justify-center"
+    >
+      <a
+        [routerLink]="['/']"
+        routerLinkActive="active"
+        class="block text-white font-medium my-2"
+      >
+        Home
+      </a>
+      <a
+        [routerLink]="['/login']"
+        routerLinkActive="active"
+        class="block text-white font-medium my-2"
+      >
+        Login
+      </a>
+      <a
+        [routerLink]="['/about']"
+        routerLinkActive="active"
+        class="block text-white font-medium my-2"
+      >
+        About
+      </a>
+    </div>
+  </div>
+</nav>
+
+<router-outlet></router-outlet>
