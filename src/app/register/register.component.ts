@@ -27,7 +27,7 @@ export class RegisterComponent implements OnInit {
           this.router.navigate(['login']);
         },
         error: (error) => {
-          console.log('Some error occured');
+          //console.log('User already exists');
         },
       });
     } else {

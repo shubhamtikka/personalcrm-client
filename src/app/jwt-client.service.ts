@@ -37,11 +37,21 @@ export class JwtClientService {
   }
 
   public register(registerRequest: RegisterRequest): Observable<any> {
-    return this.http.post(
-      'http://localhost:8081/api/v1/account/register',
-      registerRequest,
-      this.httpOptions
-    );
+    return this.http
+      .post(
+        'http://localhost:8081/api/v1/account/register',
+        registerRequest,
+        this.httpOptions
+      )
+      .pipe(
+        catchError((error: HttpErrorResponse) => {
+          if (error.status === 409) {
+            // Handle register failure
+            console.log('User already exists');
+          }
+          return throwError(() => error);
+        })
+      );
   }
 
   logout(): void {
