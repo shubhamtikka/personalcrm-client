@@ -1,1 +1,36 @@
-<p>home works!</p>
+<div class="p-8">
+  <h2 class="text-2xl font-bold mb-4">Contact List</h2>
+  <div *ngIf="contacts.length === 0" class="text-gray-500 mb-4">
+    No contacts found.
+  </div>
+  <ul class="space-y-4">
+    <li
+      *ngFor="let contact of contacts"
+      class="border border-gray-300 rounded p-4 flex justify-between items-center"
+    >
+      <div>
+        <strong>{{ contact.name }}</strong>
+        <br />
+        Contact: {{ contact.contact }}
+        <br />
+        Email: {{ contact.emailId }}
+        <br />
+        Birthday: {{ contact.birthDay | date : "longDate" }}
+      </div>
+      <div>
+        <button
+          class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mr-2"
+          (click)="editContact(contact)"
+        >
+          Edit
+        </button>
+        <button
+          class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded"
+          (click)="deleteContact(contact)"
+        >
+          Delete
+        </button>
+      </div>
+    </li>
+  </ul>
+</div>
